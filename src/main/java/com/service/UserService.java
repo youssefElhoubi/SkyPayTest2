@@ -19,5 +19,12 @@ public class UserService {
         users.add(newUser);
         System.out.println("✅ User " + newUser.getId() + " created successfully: " + newUser);
     }
+
+    public void printAllUsers(List<User> users) {
+        System.out.println("\n--- All Users (Latest to Oldest) ---");
+        for (int i = users.size() - 1; i >= 0; i--) {
+            System.out.println(users.get(i));
+        }
+    }
 }
 
