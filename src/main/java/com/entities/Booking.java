@@ -15,6 +15,6 @@ public class Booking {
     private  Room roomNumber;
     private  LocalDate checkIn;
     private  LocalDate checkOut;
-    private  int bookedPricePerNight;
+    private  Double bookedPricePerNight;
     private  int totalCost;
 }

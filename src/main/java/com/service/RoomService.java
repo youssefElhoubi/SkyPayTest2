@@ -18,6 +18,9 @@ public class RoomService {
                 .findFirst();
     }
 
+    /**
+     * Creates a new Room.
+     */
     public void createRoom(List<Room> rooms, int roomNumber, RoomType roomType, Double price) {
         // Validation
         if (roomNumber <= 0 || price <= 0 || roomType == null) {
@@ -35,6 +38,9 @@ public class RoomService {
         System.out.println("✅ Room " + roomNumber + " created.");
     }
 
+    /**
+     * Updates an existing Room.
+     */
     public void updateRoom(List<Room> rooms, int roomNumber, RoomType newType, Double newPrice) {
         // Validation
         if (roomNumber <= 0 || newPrice <= 0 || newType == null) {
@@ -51,5 +57,30 @@ public class RoomService {
         } else {
             throw new InvalidInputException("Cannot update: Room " + roomNumber + " does not exist.");
         }
+    }
+
+    /**
+     * Lists all rooms from Latest to Oldest with table styling.
+     */
+    public void listAllRooms(List<Room> rooms) {
+        System.out.println("\n╔════════════════════════════════════════╗");
+        System.out.println("║             CURRENT ROOMS              ║");
+        System.out.println("╠══════╤══════════════════╤══════════════╣");
+        System.out.println("║  ID  │       TYPE       │  PRICE ($)   ║");
+        System.out.println("╠══════╪══════════════════╪══════════════╣");
+
+        if (rooms == null || rooms.isEmpty()) {
+            System.out.println("║          No rooms available            ║");
+        } else {
+            // Loop backwards (Latest created to Oldest created)
+            for (int i = rooms.size() - 1; i >= 0; i--) {
+                Room room = rooms.get(i);
+                System.out.printf("║ %-4d │ %-16s │ %12.2f ║%n",
+                        room.getRoomNumber(),
+                        room.getRoomType(),
+                        room.getPrice());
+            }
+        }
+        System.out.println("╚══════╧══════════════════╧══════════════╝");
     }
 }
